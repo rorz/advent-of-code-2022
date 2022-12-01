@@ -4,7 +4,6 @@ fn main() {
     let input = fs::read_to_string("input.txt").expect("Couldn't read input file...");
 
     let elf_lists: Vec<&str> = input.split("\n\n").collect();
-    // let lines: Vec<&str> = input.lines().collect();
 
     let mut calorie_totals: Vec<i32> = vec![];
 
