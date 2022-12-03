@@ -76,34 +76,16 @@ fn get_move_score(their_move_raw: &str, desired_result_raw: &str) -> i32 {
         your_move_score += 3;
     };
 
-    if their_move == "ROCK" {
-        if your_move == "SCISSORS" {
-            // LOSS
-        }
-        if your_move == "PAPER" {
-            // WIN
-            your_move_score += 6;
-        }
+    if their_move == "ROCK" && your_move == "PAPER" {
+        your_move_score += 6;
     }
 
-    if their_move == "PAPER" {
-        if your_move == "ROCK" {
-            // LOSS
-        }
-        if your_move == "SCISSORS" {
-            // WIN
-            your_move_score += 6;
-        }
+    if their_move == "PAPER" && your_move == "SCISSORS" {
+        your_move_score += 6;
     }
 
-    if their_move == "SCISSORS" {
-        if your_move == "PAPER" {
-            // LOSS
-        }
-        if your_move == "ROCK" {
-            // WIN
-            your_move_score += 6;
-        }
+    if their_move == "SCISSORS" && your_move == "ROCK" {
+        your_move_score += 6;
     }
 
     return your_move_score;
