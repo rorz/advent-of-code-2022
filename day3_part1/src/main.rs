@@ -1,58 +1,9 @@
 use std::fs;
 
 static ALPHA: [char; 52] = [
-    'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-    'g',
-    'h',
-    'i',
-    'j',
-    'k',
-    'l',
-    'm',
-    'n',
-    'o',
-    'p',
-    'q',
-    'r',
-    's',
-    't',
-    'u',
-    'v',
-    'w',
-    'x',
-    'y',
-    'z',
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+    't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+    'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 ];
 
 fn main() {
@@ -71,20 +22,16 @@ fn main() {
             let mut common_item = '0';
 
             for item in first_compartment.chars() {
-                let result = second_compartment.find(item);
-
                 match second_compartment.find(item) {
                     None => {
                         continue;
                     }
-                    Some(x) => {
+                    Some(_) => {
                         common_item = item;
                         break;
                     }
                 }
             }
-
-            println!("common item: {common_item}");
 
             let priority = alpha_codes
                 .iter()
