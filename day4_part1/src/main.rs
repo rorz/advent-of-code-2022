@@ -1,55 +1,38 @@
 use std::fs;
 
 fn main() {
-    let input = fs::read_to_string("input.example.txt").expect("Couldn't read input file.");
+    let input = fs::read_to_string("input.txt").expect("Couldn't read input file.");
     let lines: Vec<&str> = input.lines().collect();
 
-    // for line in lines.iter() {
-    //     println!("Line? {line}");
-    // }
-
-    let range_pairs = lines.iter().map(|line| {
+    let range_results: Vec<i32> = lines.iter().map(|line| {
         let ranges: Vec<&str> = line.split(",").collect();
-        
-        let first_range: Vec<&str> = ranges[0].split("-").collect();
-        let second_range: Vec<&str> = ranges[1].split("-").collect();
 
-        let first_lower = first_range.split("")
+        let first_range_text: Vec<&str> = ranges[0].split("-").collect();
+        let first_lower: i32 = first_range_text[0].parse().unwrap();
+        let first_upper: i32 = first_range_text[1].parse().unwrap();
+        let first_range = first_upper - first_lower;
 
+        let second_range_text: Vec<&str> = ranges[1].split("-").collect();
+        let second_lower: i32 = second_range_text[0].parse().unwrap();
+        let second_upper: i32 = second_range_text[1].parse().unwrap();
+        let second_range = second_upper - second_lower;
 
-        let range_numbers: Vec<i32> = line
-            .split(",")
-            .flat_map(|range| {
-                range
-                    .split("-")
-                    .map(|range_index| range_index.parse().unwrap())
-            })
-            .collect();
+        if second_range > first_range {
+            if second_lower <= first_lower && second_upper >= first_upper {
+                return 1;
+            }
+        }
+        if first_range > second_range {
+            if first_lower <= second_lower && first_upper >= second_upper {
+                return 1;
+            }
+        }
 
-        let range_chunks = range_numbers.chunks(2);
+        return 0;
+    }).collect();
 
-        let largest_idx: i32 = range_chunks
-            .enumerate()
-            .max_by(|(_, a), (_, b)| a.cmp(b))
-            .map(|(index, _)| index)
-            .expect("Cant find the largest index!") as i32;
+    let range_result_sum: i32 = range_results.iter().sum();
 
-        let smaller_idx = if largest_idx == 0 { 1 } else { 0 };   
-        // let ranges: Vec<i32> = range_chunks
-        //     .map(|range_chunk| range_chunk[1] - range_chunk[0])
-        //     .max
+    println!("Sum: {}", range_result_sum)
 
-        // println!("Largest index: {largest_idx}");
-
-        // return largest_idx;
-
-        let larger_range:  = range_chunks.collect()[0];
-        let smaller_range = range_chunks[smaller_idx];
-
-
-
-
-    });
-
-    println!("Goodbye 😊");
 }
