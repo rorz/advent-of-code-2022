@@ -16,3 +16,5 @@ Cargo.lock
 # AOC
 input.*.txt
 !input.txt
+
+priv
