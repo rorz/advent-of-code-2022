@@ -27,6 +27,11 @@ fn main() {
                 return 1;
             }
         }
+        if first_range == second_range {
+            if first_lower == second_lower && first_upper == second_upper {
+                return 1;
+            }
+        }
 
         return 0;
     }).collect();
